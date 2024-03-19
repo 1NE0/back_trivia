@@ -2,6 +2,7 @@ const express = require('express');
 const router = require('./app/routes/routes');
 const app = express();
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // URL de conexión a tu clúster de MongoDB Atlas
 const uri = 'mongodb+srv://dbMongo:2323434twerdwasd@cluster0.lk1vbqd.mongodb.net/dbMongo';
