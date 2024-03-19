@@ -3,7 +3,7 @@
 const express = require('express');
 const usuariosController = require('../controllers/userController');
 const { crearPreguntas, obtenerPreguntas, obtenerPreguntaEspecifica, obtenerPreguntasByCategory } = require('../controllers/preguntaController');
-const { crearCategoria } = require('../controllers/categoriaController');
+const { crearCategoria, obtenerCategorias } = require('../controllers/categoriaController');
 
 // Crear un nuevo enrutador de Express
 const router = express.Router();
@@ -15,6 +15,7 @@ router.post('/crearPregunta', crearPreguntas);
 router.get('/preguntas' , obtenerPreguntas);
 router.get('/preguntas/:id' , obtenerPreguntaEspecifica);
 router.get('/preguntas/categorias/:idCategoria' , obtenerPreguntasByCategory);
+router.get('/categorias', obtenerCategorias);
 router.post('/crearCategoria', crearCategoria);
 // Exportar el enrutador para que esté disponible en otros archivos
 module.exports = router;

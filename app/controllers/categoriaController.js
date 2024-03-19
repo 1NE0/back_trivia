@@ -15,3 +15,14 @@ exports.crearCategoria = async (req, res) => {
         res.status(500).send('Error interno del servidor');
     }
 }
+
+exports.obtenerCategorias = async (req, res) => {
+
+    try{
+        const categorias = await Categorias.find();
+        res.json(categorias);
+    }catch(error){
+        console.error('Error al obtener usuarios:', error);
+        res.status(500).send('Error interno del servidor');
+    }
+}
