@@ -13,6 +13,18 @@ const options = {
 
 // Middleware para analizar el cuerpo de las solicitudes en formato de formulario
 app.use(express.json());
+let allowUrls = "*"
+
+// Middleware para habilitar CORS
+app.use(
+  cors({
+    origin: allowUrls,
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT"],
+    credentials: true,
+    // allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+  })
+);
+
 
 // Conexión a MongoDB
 mongoose.connect(uri, options)
