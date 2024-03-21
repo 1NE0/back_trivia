@@ -65,7 +65,7 @@ exports.verificarRespuesta = async (req, res) => {
       return res.status(404).json({ mensaje: 'Pregunta no encontrada' });
     }
 
-    return res.status(200).json({ correcta: pregunta.respuesta_correcta === idRespuesta });
+    return res.status(200).json({ correcta: pregunta.respuesta_correcta === idRespuesta , indexCorrecto:pregunta.respuesta_correcta});
 
 
   }catch(e){
