@@ -2,16 +2,24 @@ const mongoose = require('mongoose');
 
 // Definir el esquema de la pregunta
 const preguntaSchema = new mongoose.Schema({
-  label: String,  // Texto de la pregunta
+  label: {
+    type: String,
+    required: true
+  },  // Texto de la pregunta
   respuestas: [
     { 
-        texto: String,
-        correcta: Boolean
+        key: String,
+        texto: String
     }
     ],
   categoria: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Categoria'
+    ref: 'Categoria',
+    required: true
+  },
+  respuesta_correcta: {
+    type: String,
+    required: true
   }
 });
 

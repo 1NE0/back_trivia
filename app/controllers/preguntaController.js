@@ -3,7 +3,7 @@ const Preguntas = require("../models/preguntaModel");
 
 exports.obtenerPreguntas = async (req, res) => {
     try {
-      const preguntas = await Preguntas.find();
+      const preguntas = await Preguntas.find().select('-respuesta_correcta');
       res.json(preguntas);
     } catch (error) {
       console.error('Error al obtener usuarios:', error);
@@ -41,11 +41,12 @@ exports.obtenerPreguntasByCategory = async (req, res) => {
 
 exports.crearPreguntas = async (req, res) => {
     try{
-        const { label, respuestas, categoria } = req.body;
+        const { label, respuestas, categoria, respuesta_correcta } = req.body;
         const pregunta = await Preguntas.create({
           label,
           respuestas,
-          categoria
+          categoria,
+          respuesta_correcta
         });
 
         res.json(pregunta);
@@ -54,3 +55,20 @@ exports.crearPreguntas = async (req, res) => {
         res.status(500).send('Error interno del servidor');
     }
 };
+
+
+exports.verificarRespuesta = async (req, res) => {
+  try {
+    const { idPregunta, idRespuesta } = req.body;
+    const pregunta = await Preguntas.findById(idPregunta);
+    if (!pregunta) {
+      return res.status(404).json({ mensaje: 'Pregunta no encontrada' });
+    }
+
+    return res.status(200).json({ correcta: pregunta.respuesta_correcta === idRespuesta });
+
+
+  }catch(e){
+    res.status(500).json({ error: e.message });
+  }
+}
