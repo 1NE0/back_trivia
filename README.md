@@ -1,0 +1,1 @@
+El backend de esta aplicación de preguntas se ha desarrollado utilizando Node.js y se integra con una base de datos MongoDB para el almacenamiento de datos. Para asegurar una documentación clara y completa de la API, se ha implementado Swagger.
