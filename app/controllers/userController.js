@@ -16,8 +16,13 @@ exports.crearUsuario = async (req, res) => {
     // Obtener los datos del usuario desde el cuerpo de la solicitud
     const { nombre, edad, correo } = req.body;
 
+    // Obtener la IP del usuario
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+    console.log(ip);
+
     // Crear un nuevo usuario utilizando el modelo Usuario
-    const nuevoUsuario = await Usuarios.create({ nombre, edad, correo });
+    const nuevoUsuario = await Usuarios.create({ nombre, edad, correo, ip });
 
     // Enviar una respuesta con el nuevo usuario creado
     res.json(nuevoUsuario);
