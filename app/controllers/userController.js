@@ -17,7 +17,7 @@ exports.crearUsuario = async (req, res) => {
     const { nombre, edad, correo } = req.body;
 
     // Obtener la IP del usuario
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const ip = req.connection.remoteAddress;
 
     console.log(ip);
 
