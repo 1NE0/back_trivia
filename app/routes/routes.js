@@ -4,6 +4,7 @@ const express = require('express');
 const usuariosController = require('../controllers/userController');
 const { crearPreguntas, obtenerPreguntas, obtenerPreguntaEspecifica, obtenerPreguntasByCategory, verificarRespuesta } = require('../controllers/preguntaController');
 const { crearCategoria, obtenerCategorias } = require('../controllers/categoriaController');
+const { obtenerRankingsByCategory, addRegistroPuntuacion } = require('../controllers/rankingsController');
 
 // Crear un nuevo enrutador de Express
 const router = express.Router();
@@ -195,4 +196,51 @@ router.post('/crearCategoria', crearCategoria);
  */
 router.post('/verificarRespuesta', verificarRespuesta);
 
+
+/**
+ * @swagger
+ * /api/ranking/{idCategoria}:
+ *   get:
+ *     summary: Obtiene todos los rankings por categoría
+ *     description: Retorna una lista de todos los rankings de una categoría.
+ *     parameters:
+ *       - in: path
+ *         name: idCategoria
+ *         required: true
+ *         description: ID de la categoría de los registros a obtener.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Operación exitosa
+ */
+router.get('/ranking/:idCategoria', obtenerRankingsByCategory);
+
+/**
+ * @swagger
+ * /api/ranking/:
+ *  post:
+ *     summary: Agrega un nuevo registro de puntuación
+ *     description: Crea un nuevo registro de puntuación con la información proporcionada en el cuerpo de la solicitud.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               idCategoria:
+ *                 type: string
+ *                 description: ID de la categoria a la que pertenece el registro
+ *               idUsuario:
+ *                 type: string
+ *                 description: ID del usuario
+ *               fecha:
+ *                 type: string
+ *                 description: Fecha del registro
+ *     responses:
+ *       200:
+ *         description: Operación exitosa
+ */
+router.post('/ranking/', addRegistroPuntuacion);
 module.exports = router;
