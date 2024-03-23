@@ -51,6 +51,27 @@ router.post('/crearUsuario', usuariosController.crearUsuario);
 
 /**
  * @swagger
+ * /api/usuarios/{id}:
+ *   get:
+ *     summary: Obtiene un usuario en especifico
+ *     description: Retorna una lista de todos los usuarios.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID del usuario a encontrar
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Operación exitosa
+ *       404:
+ *         description: Pregunta no encontrada
+ */
+router.get('/usuarios/:id', usuariosController.obtenerUsuarioId);
+
+/**
+ * @swagger
  * /api/crearPregunta:
  *   post:
  *     summary: Crea una nueva pregunta

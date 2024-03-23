@@ -10,6 +10,19 @@ exports.obtenerUsuarios = async (req, res) => {
   }
 };
 
+exports.obtenerUsuarioId = async (req, res) => {
+  try {
+    const usuario = await Usuarios.findById(req.params.id);
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+    res.json(usuario);
+  } catch (error) {
+    console.error('Error al obtener usuario:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+};
+
 exports.crearUsuario = async (req, res) => {
   try {
     console.log(req.body);
