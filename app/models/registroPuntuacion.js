@@ -7,6 +7,7 @@ const usuarioSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     String
   },
+  puntuacion: Number,
   fecha: String,
   idCategoria: {
     type: mongoose.Schema.Types.ObjectId,

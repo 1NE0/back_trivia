@@ -238,6 +238,10 @@ router.get('/ranking/:idCategoria', obtenerRankingsByCategory);
  *               fecha:
  *                 type: string
  *                 description: Fecha del registro
+ *               puntuacion:
+ *                 type: integer
+ *                 description: Fecha del registro
+ * 
  *     responses:
  *       200:
  *         description: Operación exitosa
